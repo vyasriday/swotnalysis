@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
+
+header {
+	height: 56px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	box-shadow: 1px 4px 8px gray;
+}
+
+.right-navigation {
+	display: flex;
+	width: 20%;
+	justify-content: space-evenly;
+}
+
+.logo {
+	font-size: 32px;
+	font-weight: 700;
+	font-family: 'Acme', sans-serif;
+	padding-left: 10px;
+}
