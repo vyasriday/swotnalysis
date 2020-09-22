@@ -1,0 +1,50 @@
+.boxes {
+	display: flex;
+	flex-direction: column;
+	margin: 24px 0 16px 0;
+
+	.row {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+
+		.column {
+			margin: 0 16px;
+			padding: 4px 16px;
+			display: flex;
+			flex-direction: column;
+			max-height: 300px;
+			height: 300px;
+			min-width: 280px;
+			max-width: 300px;
+			box-shadow: 2px 6px 11px gray;
+			border-radius: 4px;
+			.items {
+				overflow-y: scroll;
+			}
+			.title {
+				height: 24px;
+				font-size: 16px;
+				text-align: center;
+				margin-bottom: 10px;
+			}
+		}
+
+		.strength,
+		.weakness {
+			margin-bottom: 16px;
+		}
+	}
+}
+
+.item {
+	// border-bottom: 1px solid black;
+	margin: 8px 0;
+	.text {
+		padding-right: 6px;
+	}
+	hr {
+		width: 50%;
+		text-align: left;
+	}
+}

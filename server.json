@@ -1,3 +1,5 @@
 {
-	"isLoggedIn": "false"
+	"data": {
+		"strengths": ["I have one year of experience"]
+	}
 }

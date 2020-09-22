@@ -1,10 +1,11 @@
 import React from 'react';
 import Header from './Header/index.jsx';
+import Home from './Home/index.jsx';
 const App = () => {
 	return (
 		<div>
 			<Header />
-			<h2>Swot Analysis App</h2>
+			<Home />
 		</div>
 	);
 };
