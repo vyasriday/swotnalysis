@@ -10,8 +10,13 @@ header {
 
 .right-navigation {
 	display: flex;
-	width: 20%;
 	justify-content: space-evenly;
+	:first-child {
+		margin: 0 10px;
+	}
+	:last-child {
+		margin-right: 10px;
+	}
 }
 
 .logo {
