@@ -1,0 +1,13 @@
+@import '../../styles/colors.scss';
+
+button {
+	padding: 8px 12px;
+	border-radius: 4px;
+	outline: none;
+	background-color: #1b262c;
+	border: none;
+	font-size: 16px;
+	color: $white;
+	// max-width: fit-content;
+	cursor: pointer;
+}

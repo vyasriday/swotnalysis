@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './home.scss';
-
 const data = {
 	strength: [
 		'I have one year of experience',
