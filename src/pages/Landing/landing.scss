@@ -1,0 +1,88 @@
+@import '../../styles/colors.scss';
+.landing {
+	width: 100%;
+	margin: 0 auto;
+	height: calc(100vh - 70px);
+	background: rgb(228, 241, 241);
+
+	align-items: center;
+}
+
+.text-content {
+	margin-right: 24px;
+	text-align: center;
+	border: 1px solid black;
+	border-radius: 4px;
+	padding: 6px 8px;
+	border-radius: 4px;
+	box-shadow: 1px 4px 11px gray;
+	.title {
+		h2 {
+			font-size: 48px;
+			font-family: 'Acme', sans-serif;
+			letter-spacing: 2px;
+
+			.strength {
+				color: $strength;
+			}
+			.weakness {
+				color: $weakness;
+			}
+
+			.opportunity {
+				color: $opportunity;
+			}
+
+			.threat {
+				color: $threat;
+			}
+		}
+	}
+	.tagline {
+		p {
+			font-size: 24px;
+			font-weight: bold;
+			letter-spacing: 1px;
+		}
+	}
+}
+
+.swot-chart {
+	vertical-align: middle;
+	min-width: 280px;
+	margin-left: 24px;
+	padding: 8px;
+	// background: chartreuse;
+	border: 1px solid black;
+	border-radius: 4px;
+	padding: 6px 8px;
+	border-radius: 4px;
+	box-shadow: 1px 4px 11px gray;
+	.column {
+		display: flex;
+		.head {
+			padding: 4px 6px;
+			max-width: 28px;
+			width: 28px;
+			text-align: center;
+		}
+		.description {
+			margin-left: 8px;
+			padding: 4px 6px;
+			font-size: 16px;
+			font-weight: bolder;
+		}
+	}
+	.strength > .head {
+		background: $strength;
+	}
+	.weakness > .head {
+		background: $weakness;
+	}
+	.opportunity > .head {
+		background: $opportunity;
+	}
+	.threat > .head {
+		background: $threat;
+	}
+}

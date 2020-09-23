@@ -1,11 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
-
+@import '../../styles/colors.scss';
 header {
 	height: 56px;
-	width: 100%;
+	width: calc(100% - 18px);
 	display: flex;
 	justify-content: space-between;
-	box-shadow: 1px 4px 8px gray;
+	margin-bottom: 0;
+	box-shadow: 1px 4px 11px gray;
+	border: 1px solid black;
+	padding: 6px 8px;
 }
 
 .right-navigation {
@@ -24,4 +26,17 @@ header {
 	font-weight: 700;
 	font-family: 'Acme', sans-serif;
 	padding-left: 10px;
+	letter-spacing: 2px;
+	.strength {
+		color: $strength;
+	}
+	.weakness {
+		color: $weakness;
+	}
+	.opportunity {
+		color: $opportunity;
+	}
+	.threat {
+		color: $threat;
+	}
 }
