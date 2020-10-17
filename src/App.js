@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Landing from './pages/Landing';
 import ErrorBoundary from './components/ErrorBoundary/index';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const App = () => {
 	return (
@@ -14,7 +15,7 @@ const App = () => {
 				<Header />
 				<Router>
 					<Landing path='/' />
-					<Home path='/home' />
+					<ProtectedRoute component={Home} path='/home' />
 					<Login path='/login' />
 					<Signup path='/signup' />
 				</Router>
