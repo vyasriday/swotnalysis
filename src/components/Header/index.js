@@ -8,13 +8,15 @@ const Header = () => {
 		<header>
 			<ul className='left-navigation'>
 				<li>
-					<span className='logo'>
-						<span className='strength'>s</span>
-						<span className='weakness'>w</span>
-						<span className='opportunity'>o</span>
-						<span className='threat'>t</span>
-						nalysis
-					</span>
+					<Link to='/'>
+						<span className='logo'>
+							<span className='strength'>s</span>
+							<span className='weakness'>w</span>
+							<span className='opportunity'>o</span>
+							<span className='threat'>t</span>
+							nalysis
+						</span>
+					</Link>
 				</li>
 			</ul>
 			<ul className='right-navigation'>

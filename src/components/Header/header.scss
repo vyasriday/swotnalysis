@@ -8,6 +8,7 @@ header {
 	box-shadow: 1px 4px 11px gray;
 	border: 1px solid black;
 	padding: 6px 8px;
+	background-color: rgb(14, 19, 18);
 }
 
 .right-navigation {
@@ -27,6 +28,7 @@ header {
 	font-family: 'Acme', sans-serif;
 	padding-left: 10px;
 	letter-spacing: 2px;
+	color: aqua;
 	.strength {
 		color: $strength;
 	}

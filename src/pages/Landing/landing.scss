@@ -3,7 +3,7 @@
 	width: 100%;
 	margin: 0 auto;
 	height: calc(100vh - 70px);
-	background: rgb(228, 241, 241);
+	background: #121212;
 
 	align-items: center;
 }
@@ -15,7 +15,8 @@
 	border-radius: 4px;
 	padding: 6px 8px;
 	border-radius: 4px;
-	box-shadow: 1px 4px 11px gray;
+	background: #181111;
+	color: aqua;
 	.title {
 		h2 {
 			font-size: 48px;
@@ -43,6 +44,8 @@
 			font-size: 24px;
 			font-weight: bold;
 			letter-spacing: 1px;
+			padding: 0 8px;
+			color: azure;
 		}
 	}
 }
@@ -57,7 +60,8 @@
 	border-radius: 4px;
 	padding: 6px 8px;
 	border-radius: 4px;
-	box-shadow: 1px 4px 11px gray;
+	background: #000000;
+	color: white;
 	.column {
 		display: flex;
 		.head {
