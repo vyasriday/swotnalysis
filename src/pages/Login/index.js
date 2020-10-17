@@ -26,7 +26,10 @@ const Login = () => {
 			password: user.password.value,
 		};
 
-		const response = await axios.post('http://localhost:8000/auth/login', data);
+		const response = await axios.post(
+			'${process.env.REACT_APP_API_URL}auth/signup',
+			data
+		);
 		console.log('response ', response);
 		const userData = response.data;
 		if (userData.token) {
