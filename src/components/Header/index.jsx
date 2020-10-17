@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from '../Button';
-// import logo from '../../assets/logo.png';
 import './header.scss';
 
 const Header = (props) => {
@@ -9,14 +8,10 @@ const Header = (props) => {
 			<ul className='left-navigation'>
 				<li>
 					<span className='logo'>
-						<span className="strength">s
-						</span>
-						<span className="weakness">w
-						</span>
-						<span className="opportunity">o
-						</span>
-						<span className="threat">
-						t</span>
+						<span className='strength'>s</span>
+						<span className='weakness'>w</span>
+						<span className='opportunity'>o</span>
+						<span className='threat'>t</span>
 						nalysis
 					</span>
 				</li>
@@ -31,8 +26,8 @@ const Header = (props) => {
 				</li>
 				{/* If user logged in  */}
 				<li>
-					<Button display="Home" />
-					<Button display="Log Out" />
+					<Button display='Home' />
+					<Button display='Log Out' />
 				</li>
 			</ul>
 		</header>
