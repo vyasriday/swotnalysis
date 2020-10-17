@@ -1,9 +1,12 @@
-import { Link } from '@reach/router';
-import React from 'react';
+import { Link, navigate } from '@reach/router';
+import React, { useContext, useState } from 'react';
+import { isLoggedIn } from '../../helper/localStorage';
+import UserContext from '../../contexts/userContext';
 import Button from '../Button';
 import './header.scss';
 
 const Header = () => {
+	const [currentUser, setCurrentUser] = useContext(UserContext);
 	return (
 		<header>
 			<ul className='left-navigation'>
@@ -19,24 +22,39 @@ const Header = () => {
 					</Link>
 				</li>
 			</ul>
-			<ul className='right-navigation'>
-				{/* if not logged in  */}
-				<li>
-					<Link to='/login'>
-						<Button display='Log In' />
-					</Link>
-				</li>
-				<li>
-					<Link to='/signup'>
-						<Button display='Sign Up' />
-					</Link>
-				</li>
-				{/* If user logged in  */}
-				{/* <li>
-					<Button display='Home' />
-					<Button display='Log Out' />
-				</li> */}
-			</ul>
+			{currentUser ? (
+				<ul className='right-navigation'>
+					{/* if not logged in  */}
+					<li>
+						<Link to='/home'>
+							<Button display='Home' />
+						</Link>
+					</li>
+					<li>
+						<Button
+							display='Log out'
+							onClick={() => {
+								localStorage.clear();
+								setCurrentUser(null);
+								navigate('/');
+							}}
+						/>
+					</li>
+				</ul>
+			) : (
+				<ul className='right-navigation'>
+					<li>
+						<Link to='/login'>
+							<Button display='Log In' />
+						</Link>
+					</li>
+					<li>
+						<Link to='/signup'>
+							<Button display='Sign Up' />
+						</Link>
+					</li>
+				</ul>
+			)}
 		</header>
 	);
 };

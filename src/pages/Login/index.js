@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
+import axios from 'axios';
+import { setItem } from '../../helper/localStorage';
+import { navigate } from '@reach/router';
+import UserContext from '../../contexts/userContext';
 
 const Login = () => {
+	// eslint-disable-next-line
+	const [_, setCurrentUser] = useContext(UserContext);
 	const [user, setUser] = useState({
 		email: {
 			value: '',
@@ -13,13 +19,24 @@ const Login = () => {
 			error: 'Password is wrong',
 		},
 	});
-	function handleFormSubmit(e) {
+	async function handleFormSubmit(e) {
 		e.preventDefault();
-		console.log('user', user);
+		const data = {
+			email: user.email.value,
+			password: user.password.value,
+		};
+
+		const response = await axios.post('http://localhost:8000/auth/login', data);
+		console.log('response ', response);
+		const userData = response.data;
+		if (userData.token) {
+			setItem('st-token', userData.token);
+			navigate('/home');
+		}
 	}
 	return (
 		<div className='login-form'>
-			<h2>Login In</h2>
+			<h2>Log In</h2>
 			<form onSubmit={handleFormSubmit}>
 				<Input
 					label='Email'
