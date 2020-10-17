@@ -1,3 +1,4 @@
+import { Link } from '@reach/router';
 import React from 'react';
 import Button from '../Button';
 import './header.scss';
@@ -19,16 +20,20 @@ const Header = () => {
 			<ul className='right-navigation'>
 				{/* if not logged in  */}
 				<li>
-					<Button display='Log In' />
+					<Link to='/login'>
+						<Button display='Log In' />
+					</Link>
 				</li>
 				<li>
-					<Button display='Sign Up' />
+					<Link to='/signup'>
+						<Button display='Sign Up' />
+					</Link>
 				</li>
 				{/* If user logged in  */}
-				<li>
+				{/* <li>
 					<Button display='Home' />
 					<Button display='Log Out' />
-				</li>
+				</li> */}
 			</ul>
 		</header>
 	);
