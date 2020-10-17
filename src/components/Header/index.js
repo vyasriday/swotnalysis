@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../Button';
 import './header.scss';
 
-const Header = (props) => {
+const Header = () => {
 	return (
 		<header>
 			<ul className='left-navigation'>

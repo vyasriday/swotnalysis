@@ -1,19 +1,22 @@
 import React from 'react';
 import { Router } from '@reach/router';
-import Header from './components/Header/index.jsx';
-import Home from './pages/Home/index.jsx';
+import Header from './components/Header';
+import Home from './pages/Home';
 
-import Landing from './pages/Landing/index.jsx';
+import Landing from './pages/Landing';
+import ErrorBoundary from './components/ErrorBoundary';
 
 const App = () => {
 	return (
-		<div>
-			<Header />
-			<Router>
-				<Landing path='/' />
-				<Home path='/home' />
-			</Router>
-		</div>
+		<ErrorBoundary>
+			<div>
+				<Header />
+				<Router>
+					<Landing path='/' />
+					<Home path='/home' />
+				</Router>
+			</div>
+		</ErrorBoundary>
 	);
 };
 
