@@ -35,6 +35,7 @@ const Login = () => {
 		const userData = response.data;
 		if (userData.token) {
 			setItem('st-token', userData.token);
+			setCurrentUser(userData.profile);
 			navigate('/home');
 		}
 	}
