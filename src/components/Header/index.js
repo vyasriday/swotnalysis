@@ -1,5 +1,5 @@
 import { Link, navigate } from '@reach/router';
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { isLoggedIn } from '../../helper/localStorage';
 import UserContext from '../../contexts/userContext';
 import Button from '../Button';

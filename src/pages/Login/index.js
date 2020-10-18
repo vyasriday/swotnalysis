@@ -6,6 +6,7 @@ import { setItem } from '../../helper/localStorage';
 import { Link, navigate } from '@reach/router';
 import UserContext from '../../contexts/userContext';
 import './login.scss';
+const URL = `${process.env.REACT_APP_API_URL}auth/login`;
 const Login = () => {
 	// eslint-disable-next-line
 	const [_, setCurrentUser] = useContext(UserContext);
@@ -26,10 +27,11 @@ const Login = () => {
 			password: user.password.value,
 		};
 
-		const response = await axios.post(
-			'${process.env.REACT_APP_API_URL}auth/signup',
-			data
-		);
+		const response = await axios({
+			method: 'post',
+			url: URL,
+			data,
+		});
 		const userData = response.data;
 		if (userData.token) {
 			setItem('st-token', userData.token);
