@@ -22,7 +22,7 @@ const Header = () => {
 					</Link>
 				</li>
 			</ul>
-			{currentUser ? (
+			{currentUser && isLoggedIn() ? (
 				<ul className='right-navigation'>
 					{/* if not logged in  */}
 					<li>

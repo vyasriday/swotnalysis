@@ -6,7 +6,11 @@ import { setItem } from '../../helper/localStorage';
 import { Link, navigate } from '@reach/router';
 import UserContext from '../../contexts/userContext';
 import './login.scss';
-const URL = `${process.env.REACT_APP_API_URL}auth/login`;
+import { getConfig } from '../../config';
+
+const config = getConfig();
+
+const URL = `${config.API_URL}auth/login`;
 const Login = () => {
 	// eslint-disable-next-line
 	const [_, setCurrentUser] = useContext(UserContext);
@@ -34,7 +38,7 @@ const Login = () => {
 		});
 		const userData = response.data;
 		if (userData.token) {
-			setItem('st-token', userData.token);
+			setItem(config.TOKEN, userData.token);
 			setCurrentUser(userData.profile);
 			navigate('/home');
 		}
