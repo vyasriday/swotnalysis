@@ -3,9 +3,9 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import axios from 'axios';
 import { setItem } from '../../helper/localStorage';
-import { navigate } from '@reach/router';
+import { Link, navigate } from '@reach/router';
 import UserContext from '../../contexts/userContext';
-
+import './login.scss';
 const Login = () => {
 	// eslint-disable-next-line
 	const [_, setCurrentUser] = useContext(UserContext);
@@ -30,7 +30,6 @@ const Login = () => {
 			'${process.env.REACT_APP_API_URL}auth/signup',
 			data
 		);
-		console.log('response ', response);
 		const userData = response.data;
 		if (userData.token) {
 			setItem('st-token', userData.token);
@@ -40,6 +39,9 @@ const Login = () => {
 	return (
 		<div className='login-form'>
 			<h2>Log In</h2>
+			<p>
+				Don&apos;t have a account? <Link to='/signup'>Sign Up</Link>
+			</p>
 			<form onSubmit={handleFormSubmit}>
 				<Input
 					label='Email'

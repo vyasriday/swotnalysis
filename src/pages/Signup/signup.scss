@@ -1,0 +1,31 @@
+.signup-form {
+	margin: 0 auto;
+	width: 50%;
+	h2 {
+		font-weight: 700%;
+		font-size: 32px;
+	}
+	form {
+		width: 100%;
+		margin: 0 auto;
+
+		Input {
+			width: 50%;
+		}
+	}
+}
+
+@media (max-width: 600px) {
+	.signup-form {
+		margin: 0 auto;
+		width: 80%;
+		form {
+			width: 100%;
+			margin: 0 auto;
+
+			Input {
+				width: 100%;
+			}
+		}
+	}
+}
