@@ -42,3 +42,19 @@ header {
 		color: $threat;
 	}
 }
+
+@media (max-width: 440px) {
+	.right-navigation {
+		display: flex;
+		justify-content: space-evenly;
+		:first-child {
+			margin: 0 4px;
+		}
+		:last-child {
+			margin-right: 2px;
+		}
+	}
+	.logo {
+		font-size: 24px;
+	}
+}
