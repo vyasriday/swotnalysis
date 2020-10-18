@@ -89,3 +89,12 @@
 		background: $threat;
 	}
 }
+
+@media (max-width: 825px) {
+	.text-content {
+		margin-right: 0;
+	}
+	.swot-chart {
+		margin-left: 0;
+	}
+}
