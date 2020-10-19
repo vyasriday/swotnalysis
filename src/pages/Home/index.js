@@ -8,10 +8,10 @@ const config = getConfig();
 
 const URL = `${config.API_URL}api/swot`;
 
-const DisplayItem = (props) => {
+const DisplayItem = ({ item }) => {
 	return (
 		<div className='item'>
-			<p className='text'>{props.item}</p>
+			<p className='text'>{item.title}</p>
 			<hr />
 		</div>
 	);
@@ -91,7 +91,7 @@ const Home = () => {
 		const _id = swot._id;
 		const updatedData = {
 			...swot,
-			[type.toLowerCase()]: [...swot[type.toLowerCase()], item],
+			[type.toLowerCase()]: [...swot[type.toLowerCase()], { title: item }],
 		};
 		const {
 			data: { data },
@@ -103,6 +103,10 @@ const Home = () => {
 				'X-Auth-Token': getItem(config.TOKEN),
 			},
 		});
+		if (data.error) {
+			// could not update
+			return;
+		}
 		setSwot(data);
 	}
 
