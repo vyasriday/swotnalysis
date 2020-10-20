@@ -1,4 +1,4 @@
-import { Link } from '@reach/router';
+import { Link, navigate } from '@reach/router';
 import React from 'react';
 
 class ErrorBoundary extends React.Component {
@@ -16,13 +16,17 @@ class ErrorBoundary extends React.Component {
 		console.error(error, errorInfo);
 	}
 
+	componentDidUpdate() {
+		setTimeout(() => navigate('/'), 5000);
+	}
+
 	render() {
 		const { hasError } = this.state;
 		if (hasError) {
 			return (
 				<div className='error-page'>
 					<h3>Oops! Something went wrong on our side.</h3>
-					<Link to='/home'>Go Back</Link>
+					<Link to='/'>Go Back</Link>
 				</div>
 			);
 		}

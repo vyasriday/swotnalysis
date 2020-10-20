@@ -1,10 +1,10 @@
 import React from 'react';
-import { navigate } from '@reach/router';
+import { navigate, Router } from '@reach/router';
 import { isLoggedIn } from '../../helper/localStorage';
 
-const ProtectedRoute = ({ component: Component, ...rest }) => {
+const ProtectedRoute = (props) => {
 	if (isLoggedIn()) {
-		return <Component {...rest} />;
+		return <Router component={props.component} path={props.path} />;
 	}
 	return navigate('/login');
 };

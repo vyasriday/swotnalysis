@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 import React from 'react';
 import './landing.scss';
-import LandingImage from '../../assets/swot-analysis-graphic.jpg';
 
 const Landing = () => {
 	return (

@@ -28,8 +28,10 @@ const Signup = () => {
 			error: '',
 		},
 	});
+	const [loadig, setLoading] = useState(false);
 	async function handleFormSubmit(e) {
 		e.preventDefault();
+		setLoading(true);
 		const data = {
 			name: user.name.value,
 			email: user.email.value,

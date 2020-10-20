@@ -6,7 +6,7 @@ import Button from '../Button';
 import './header.scss';
 
 const Header = () => {
-	const [currentUser, setCurrentUser] = useContext(UserContext);
+	const [currentUser] = useContext(UserContext);
 	return (
 		<header>
 			<ul className='left-navigation'>
@@ -35,7 +35,6 @@ const Header = () => {
 							display='Log out'
 							onClick={() => {
 								localStorage.clear();
-								setCurrentUser(null);
 								navigate('/');
 							}}
 						/>
