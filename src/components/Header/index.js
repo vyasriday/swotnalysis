@@ -1,4 +1,4 @@
-import { Link, navigate } from '@reach/router';
+import { Link, useHistory } from 'react-router-dom';
 import React, { useContext } from 'react';
 import { isLoggedIn } from '../../helper/localStorage';
 import UserContext from '../../contexts/userContext';
@@ -6,7 +6,8 @@ import Button from '../Button';
 import './header.scss';
 
 const Header = () => {
-	const [currentUser] = useContext(UserContext);
+	const [currentUser, setCurrentUser] = useContext(UserContext);
+	let history = useHistory();
 	return (
 		<header>
 			<ul className='left-navigation'>
@@ -35,7 +36,8 @@ const Header = () => {
 							display='Log out'
 							onClick={() => {
 								localStorage.clear();
-								navigate('/');
+								setCurrentUser(null);
+								history.push('/');
 							}}
 						/>
 					</li>

@@ -1,4 +1,4 @@
-import { Link, navigate } from '@reach/router';
+import { Link } from 'react-router-dom';
 import React from 'react';
 
 class ErrorBoundary extends React.Component {
@@ -16,9 +16,7 @@ class ErrorBoundary extends React.Component {
 		console.error(error, errorInfo);
 	}
 
-	componentDidUpdate() {
-		setTimeout(() => navigate('/'), 5000);
-	}
+	componentDidUpdate() {}
 
 	render() {
 		const { hasError } = this.state;

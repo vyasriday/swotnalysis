@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Router } from '@reach/router';
+import { Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -37,18 +37,26 @@ const App = () => {
 		}
 		getUser();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [userHook]);
+	}, []);
 	return (
 		<ErrorBoundary>
 			<UserContext.Provider value={userHook}>
 				<div>
 					<Header />
-					<Router>
-						<Landing path='/' />
-						<ProtectedRoute component={Home} path='/home' />
-						<Login path='/login' />
-						<Signup path='/signup' />
-					</Router>
+					<Switch>
+						<Route path='/' exact>
+							<Landing />
+						</Route>
+						<ProtectedRoute path='/home'>
+							<Home />
+						</ProtectedRoute>
+						<Route path='/login'>
+							<Login />
+						</Route>
+						<Route path='/signup'>
+							<Signup />
+						</Route>
+					</Switch>
 				</div>
 			</UserContext.Provider>
 		</ErrorBoundary>

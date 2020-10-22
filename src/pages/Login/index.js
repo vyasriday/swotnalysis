@@ -3,7 +3,7 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import axios from 'axios';
 import { setItem } from '../../helper/localStorage';
-import { Link, navigate } from '@reach/router';
+import { Link, useHistory } from 'react-router-dom';
 import UserContext from '../../contexts/userContext';
 import './login.scss';
 import { getConfig } from '../../config';
@@ -24,6 +24,7 @@ const Login = () => {
 			error: 'Password is wrong',
 		},
 	});
+	let history = useHistory();
 	async function handleFormSubmit(e) {
 		e.preventDefault();
 		const data = {
@@ -40,7 +41,7 @@ const Login = () => {
 		if (userData.token) {
 			setItem(config.TOKEN, userData.token);
 			setCurrentUser(userData.profile);
-			navigate('/home');
+			history.push('/home');
 		}
 	}
 	return (

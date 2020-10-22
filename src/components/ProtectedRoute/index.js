@@ -1,12 +1,25 @@
 import React from 'react';
-import { navigate, Router } from '@reach/router';
+import { Redirect, Route } from 'react-router-dom';
 import { isLoggedIn } from '../../helper/localStorage';
 
-const ProtectedRoute = (props) => {
-	if (isLoggedIn()) {
-		return <Router component={props.component} path={props.path} />;
-	}
-	return navigate('/login');
+const ProtectedRoute = ({ children, ...otherProps }) => {
+	return (
+		<Route
+			{...otherProps}
+			render={({ location }) =>
+				isLoggedIn() ? (
+					children
+				) : (
+					<Redirect
+						to={{
+							pathname: '/login',
+							state: { from: location },
+						}}
+					/>
+				)
+			}
+		/>
+	);
 };
 
 export default ProtectedRoute;
