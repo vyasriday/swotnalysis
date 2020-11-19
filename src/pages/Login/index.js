@@ -7,6 +7,9 @@ import { Link, useHistory } from 'react-router-dom';
 import UserContext from '../../contexts/userContext';
 import './login.scss';
 import { getConfig } from '../../config';
+import { validateEmail } from '../../helper/common';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const config = getConfig();
 
@@ -24,6 +27,7 @@ const Login = () => {
 			error: 'Password is wrong',
 		},
 	});
+	const [showPasswordField, setShowPasswordField] = useState(false);
 	let history = useHistory();
 	async function handleFormSubmit(e) {
 		e.preventDefault();
@@ -44,6 +48,36 @@ const Login = () => {
 			history.push('/home');
 		}
 	}
+
+	async function handleEmailCheck(e) {
+		e.preventDefault();
+		const EmailCheckURL = `${config.API_URL}api/emailavailable`;
+		const response = await axios.get(EmailCheckURL, {
+			params: {
+				email: user.email.value,
+			},
+		});
+		const data = response.data;
+		if (data.error) {
+			toast.error('Account does not exist', {
+				position: 'top-center',
+				autoClose: 5000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: false,
+				progress: undefined,
+			});
+			// setUser({
+			// 	...user,
+			// 	email: { ...user.email, error: 'Account Does Not Exist' },
+			// });
+		} else {
+			// setUser({ ...user, email: { ...user.email, error: null } });
+
+			setShowPasswordField(true);
+		}
+	}
 	return (
 		<div className='login-form'>
 			<h2>Log In</h2>
@@ -61,20 +95,41 @@ const Login = () => {
 							email: { ...user.email, value: e.target.value },
 						})
 					}
+					error={user.email.error}
 				/>
-				<Input
-					label='Password'
-					type='password'
-					value={user.password.value}
-					onChange={(e) =>
-						setUser({
-							...user,
-							password: { ...user.password, value: e.target.value },
-						})
-					}
-				/>
-				<Button display='Log In' type='submit' />
+				{user.email.value &&
+					validateEmail(user.email.value) &&
+					!showPasswordField && (
+						<Button display='Next' onClick={handleEmailCheck} type='submit' />
+					)}
+				{showPasswordField && (
+					<>
+						<Input
+							label='Password'
+							type='password'
+							value={user.password.value}
+							onChange={(e) =>
+								setUser({
+									...user,
+									password: { ...user.password, value: e.target.value },
+								})
+							}
+						/>
+						<Button display='Log In' type='submit' />
+					</>
+				)}
 			</form>
+			<ToastContainer
+				position='top-center'
+				autoClose={5000}
+				hideProgressBar
+				newestOnTop
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss={false}
+				draggable={false}
+				pauseOnHover
+			/>
 		</div>
 	);
 };

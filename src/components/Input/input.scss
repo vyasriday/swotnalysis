@@ -12,6 +12,10 @@
 		border-bottom: 2px solid black;
 		margin: 4px 0;
 	}
+
+	input.highlight-error {
+		border: 1px solid red;
+	}
 }
 
 .error {
