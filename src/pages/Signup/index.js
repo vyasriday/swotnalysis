@@ -30,9 +30,10 @@ const Signup = () => {
 			error: '',
 		},
 	});
-	const [loadig, setLoading] = useState(false);
+	const [loading, setLoading] = useState(false);
 	let history = useHistory();
 	async function handleFormSubmit(e) {
+		setLoading(true);
 		e.preventDefault();
 		setLoading(true);
 		const data = {
@@ -45,6 +46,7 @@ const Signup = () => {
 			url: URL,
 			data,
 		});
+		setLoading(false);
 		const userData = response.data;
 		if (userData.token) {
 			setItem(config.TOKEN, userData.token);
@@ -102,7 +104,7 @@ const Signup = () => {
 						})
 					}
 				/>
-				<Button display='Sign Up' type='submit' />
+				<Button display='Sign Up' type='submit' loading={loading} />
 			</form>
 			<ToastContainer
 				position='top-center'

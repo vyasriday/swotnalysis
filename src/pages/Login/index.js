@@ -28,8 +28,10 @@ const Login = () => {
 		},
 	});
 	const [showPasswordField, setShowPasswordField] = useState(false);
+	const [loading, setLoading] = useState(false);
 	let history = useHistory();
 	async function handleFormSubmit(e) {
+		setLoading(true);
 		e.preventDefault();
 		const data = {
 			email: user.email.value,
@@ -41,6 +43,7 @@ const Login = () => {
 			url: URL,
 			data,
 		});
+		setLoading(false);
 		const userData = response.data;
 
 		if (userData.token) {
@@ -61,6 +64,7 @@ const Login = () => {
 	}
 
 	async function handleEmailCheck(e) {
+		setLoading(true);
 		e.preventDefault();
 		const EmailCheckURL = `${config.API_URL}api/emailavailable`;
 		const response = await axios.get(EmailCheckURL, {
@@ -68,6 +72,7 @@ const Login = () => {
 				email: user.email.value,
 			},
 		});
+		setLoading(false);
 		const data = response.data;
 		if (data.error) {
 			toast.error('Account does not exist', {
@@ -111,7 +116,12 @@ const Login = () => {
 				{user.email.value &&
 					validateEmail(user.email.value) &&
 					!showPasswordField && (
-						<Button display='Next' onClick={handleEmailCheck} type='submit' />
+						<Button
+							display='Next'
+							onClick={handleEmailCheck}
+							type='submit'
+							loading={loading}
+						/>
 					)}
 				{showPasswordField && (
 					<>
@@ -126,7 +136,7 @@ const Login = () => {
 								})
 							}
 						/>
-						<Button display='Log In' type='submit' />
+						<Button display='Log In' type='submit' loading={loading} />
 					</>
 				)}
 			</form>
