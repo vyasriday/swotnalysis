@@ -42,10 +42,21 @@ const Login = () => {
 			data,
 		});
 		const userData = response.data;
+
 		if (userData.token) {
 			setItem(config.TOKEN, userData.token);
 			setCurrentUser(userData.profile);
 			history.push('/home');
+		} else if (userData.error) {
+			toast.error('Invalid credentials, please try again', {
+				position: 'top-center',
+				autoClose: 5000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: false,
+				progress: undefined,
+			});
 		}
 	}
 

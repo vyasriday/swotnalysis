@@ -7,6 +7,8 @@ import { Link, useHistory } from 'react-router-dom';
 import UserContext from '../../contexts/userContext';
 import './signup.scss';
 import { getConfig } from '../../config';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const config = getConfig();
 
@@ -48,6 +50,16 @@ const Signup = () => {
 			setItem(config.TOKEN, userData.token);
 			setCurrentUser(userData.profile);
 			history.push('/home');
+		} else if (userData.error) {
+			toast.error(userData.error, {
+				position: 'top-center',
+				autoClose: 5000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: false,
+				progress: undefined,
+			});
 		}
 	}
 	return (
@@ -92,6 +104,17 @@ const Signup = () => {
 				/>
 				<Button display='Sign Up' type='submit' />
 			</form>
+			<ToastContainer
+				position='top-center'
+				autoClose={5000}
+				hideProgressBar
+				newestOnTop
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss={false}
+				draggable={false}
+				pauseOnHover
+			/>
 		</div>
 	);
 };
