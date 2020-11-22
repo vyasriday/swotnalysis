@@ -3,15 +3,19 @@ import { getConfig } from '../../config';
 import { getItem } from '../../helper/localStorage';
 import './home.scss';
 import axios from 'axios';
-import { FaCheck, FaTimes, FaPlus } from 'react-icons/fa';
+import { FaCheck, FaTimes, FaPlus, FaTrash } from 'react-icons/fa';
 const config = getConfig();
 const URL = `${config.API_URL}api/swot`;
 
-const DisplayItem = ({ item }) => {
+const DisplayItem = ({ item, deleteItem, type }) => {
 	return (
 		<div className='item'>
 			<p className='text'>{item.title}</p>
-			<hr />
+			<FaTrash
+				color='rgb(249 87 87 / 93%)'
+				size={16}
+				onClick={(e) => deleteItem(e, item._id, type)}
+			/>
 		</div>
 	);
 };
@@ -109,6 +113,33 @@ const Home = () => {
 		setSwot(data);
 	}
 
+	async function deleteItem(e, id, type) {
+		e.preventDefault();
+		const _id = swot._id;
+		const filteredItems = swot[type.toLowerCase()].filter(
+			(item) => item._id !== id
+		);
+		const updatedData = {
+			...swot,
+			[type.toLowerCase()]: filteredItems,
+		};
+		const {
+			data: { data },
+		} = await axios({
+			method: 'put',
+			url: `${URL}/${_id}`,
+			data: updatedData,
+			headers: {
+				'X-Auth-Token': getItem(config.TOKEN),
+			},
+		});
+		if (data.error) {
+			// could not update
+			return;
+		}
+		setSwot(data);
+	}
+
 	return (
 		<div>
 			<div className='boxes'>
@@ -118,8 +149,13 @@ const Home = () => {
 							<h2>Strength</h2>
 						</div>
 						<div className='items'>
-							{swot.strengths.map((item, index) => (
-								<DisplayItem item={item} key={index} />
+							{swot.strengths.map((item) => (
+								<DisplayItem
+									item={item}
+									key={item._id}
+									type='Strengths'
+									deleteItem={deleteItem}
+								/>
 							))}
 						</div>
 						<div className='new-form-component'>
@@ -131,8 +167,13 @@ const Home = () => {
 							<h2>Weakness</h2>
 						</div>
 						<div className='items'>
-							{swot.weaknesses.map((item, index) => (
-								<DisplayItem item={item} key={index} />
+							{swot.weaknesses.map((item) => (
+								<DisplayItem
+									item={item}
+									key={item._id}
+									type='Weaknesses'
+									deleteItem={deleteItem}
+								/>
 							))}
 						</div>
 						<div className='new-form-component'>
@@ -146,8 +187,13 @@ const Home = () => {
 							<h2>Opportunity</h2>
 						</div>
 						<div className='items'>
-							{swot.opportunities.map((item, index) => (
-								<DisplayItem item={item} key={index} />
+							{swot.opportunities.map((item) => (
+								<DisplayItem
+									item={item}
+									key={item._id}
+									type='Opportunities'
+									deleteItem={deleteItem}
+								/>
 							))}
 						</div>
 
@@ -160,8 +206,13 @@ const Home = () => {
 							<h2>Threat</h2>
 						</div>
 						<div className='items'>
-							{swot.threats.map((item, index) => (
-								<DisplayItem item={item} key={index} />
+							{swot.threats.map((item) => (
+								<DisplayItem
+									item={item}
+									key={item._id}
+									type='Threats'
+									deleteItem={deleteItem}
+								/>
 							))}
 						</div>
 						<div className='new-form-component'>
