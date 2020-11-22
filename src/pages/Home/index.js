@@ -5,6 +5,7 @@ import './home.scss';
 import axios from 'axios';
 import { FaCheck, FaTimes, FaPlus, FaTrash } from 'react-icons/fa';
 const config = getConfig();
+
 const URL = `${config.API_URL}api/swot`;
 
 const DisplayItem = ({ item, deleteItem, type }) => {
