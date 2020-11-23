@@ -112,3 +112,21 @@ svg {
 .title > h2 {
 	margin: 0;
 }
+
+.loading-box {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #118dd0;
+	position: absolute;
+	height: 90%;
+	width: 100%;
+	flex-direction: column;
+	p {
+		margin-right: 6px;
+		font-size: 18px;
+		font-weight: bolder;
+		letter-spacing: 1px;
+		line-height: 1.25;
+	}
+}

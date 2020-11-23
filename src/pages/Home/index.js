@@ -4,6 +4,8 @@ import { getItem } from '../../helper/localStorage';
 import './home.scss';
 import axios from 'axios';
 import { FaCheck, FaTimes, FaPlus, FaTrash } from 'react-icons/fa';
+import Loader from '../../components/Loader';
+
 const config = getConfig();
 
 const URL = `${config.API_URL}api/swot`;
@@ -72,6 +74,7 @@ const Home = () => {
 		opportunities: [],
 		threats: [],
 	});
+	const [loading, setLoading] = useState(true);
 	useEffect(() => {
 		async function getSwotData() {
 			const token = getItem(config.TOKEN);
@@ -86,6 +89,8 @@ const Home = () => {
 			});
 			// take the first item, later on will change it.
 			setSwot(data[0]);
+
+			setLoading(false);
 		}
 		getSwotData();
 	}, []);
@@ -140,7 +145,14 @@ const Home = () => {
 		}
 		setSwot(data);
 	}
-
+	if (loading) {
+		return (
+			<div className='loading-box'>
+				<Loader />
+				<p>Getting your data . . . </p>
+			</div>
+		);
+	}
 	return (
 		<div>
 			<div className='boxes'>
