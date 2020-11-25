@@ -69,12 +69,18 @@
 	display: flex;
 	align-items: center;
 	.text {
+		font-size: 13px;
 		margin-right: 4px;
-		min-width: 85%;
-		width: 85%;
+		min-width: 89%;
+		width: 89%;
+		text-align: left;
+		letter-spacing: 1px;
+		line-height: 1.2;
 	}
 	svg {
 		justify-self: flex-end;
+		margin: 0 4px;
+		cursor: pointer;
 	}
 	hr {
 		width: 50%;
@@ -104,10 +110,6 @@
 		font-size: 16px;
 	}
 }
-svg {
-	margin: 0 4px;
-	cursor: pointer;
-}
 
 .title > h2 {
 	margin: 0;
@@ -128,5 +130,31 @@ svg {
 		font-weight: bolder;
 		letter-spacing: 1px;
 		line-height: 1.25;
+	}
+}
+
+::-webkit-scrollbar {
+	width: 4px;
+	height: 300px;
+}
+// ::-webkit-scrollbar-button {
+// 	background: rgb(223, 221, 221);
+// }
+::-webkit-scrollbar-track-piece {
+	background: rgb(208, 208, 208);
+}
+::-webkit-scrollbar-thumb {
+	background: #eee;
+}
+
+@media (max-width: 800px) {
+	.boxes {
+		.row {
+			.column {
+				min-width: 320px;
+				width: 320px;
+				max-width: 320px;
+			}
+		}
 	}
 }
